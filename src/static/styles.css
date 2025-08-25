@@ -1,3 +1,32 @@
+#map-activity-list {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  min-width: 200px;
+  max-width: 250px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.07);
+}
+
+#map-activity-list h4 {
+  margin-bottom: 10px;
+  color: #0066cc;
+}
+
+#activity-list-ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+#activity-list-ul li {
+  padding: 8px 0;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+#activity-list-ul li:last-child {
+  border-bottom: none;
+}
 * {
   box-sizing: border-box;
   margin: 0;
@@ -48,6 +77,18 @@ section {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 500px;
+}
+
+#map-container {
+  margin-top: 30px;
+}
+
+#map {
+  height: 400px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 10px;
 }
 
 section h3 {

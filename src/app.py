@@ -25,13 +25,15 @@ activities = {
         "description": "Learn strategies and compete in chess tournaments",
         "schedule": "Fridays, 3:30 PM - 5:00 PM",
         "max_participants": 12,
-        "participants": ["michael@mergington.edu", "daniel@mergington.edu"]
+        "participants": ["michael@mergington.edu", "daniel@mergington.edu"],
+        "location": {"lat": 37.7749, "lng": -122.4194}  # Example: San Francisco
     },
     "Programming Class": {
         "description": "Learn programming fundamentals and build software projects",
         "schedule": "Tuesdays and Thursdays, 3:30 PM - 4:30 PM",
         "max_participants": 20,
-        "participants": ["emma@mergington.edu", "sophia@mergington.edu"]
+        "participants": ["emma@mergington.edu", "sophia@mergington.edu"],
+        "location": {"lat": 37.8715, "lng": -122.2730}  # Example: Berkeley
     },
     "Gym Class": {
         "description": "Physical education and sports activities",
@@ -43,7 +45,8 @@ activities = {
         "description": "Join the school soccer team and compete in matches",
         "schedule": "Tuesdays and Thursdays, 4:00 PM - 5:30 PM",
         "max_participants": 22,
-        "participants": ["liam@mergington.edu", "noah@mergington.edu"]
+        "participants": ["liam@mergington.edu", "noah@mergington.edu"],
+        "location": {"lat": 37.8044, "lng": -122.2712}  # Example: Oakland
     },
     "Basketball Team": {
         "description": "Practice and play basketball with the school team",
@@ -55,7 +58,8 @@ activities = {
         "description": "Explore your creativity through painting and drawing",
         "schedule": "Thursdays, 3:30 PM - 5:00 PM",
         "max_participants": 15,
-        "participants": ["amelia@mergington.edu", "harper@mergington.edu"]
+        "participants": ["amelia@mergington.edu", "harper@mergington.edu"],
+        "location": {"lat": 37.3382, "lng": -121.8863}  # Example: San Jose
     },
     "Drama Club": {
         "description": "Act, direct, and produce plays and performances",

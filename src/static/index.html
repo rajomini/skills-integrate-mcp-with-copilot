@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mergington High School Activities</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   </head>
   <body>
     <header>
@@ -39,12 +40,23 @@
         </form>
         <div id="message" class="hidden"></div>
       </section>
+        <section id="map-container">
+            <h3>Find Activities by Location</h3>
+            <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-start;">
+              <div id="map" style="height: 400px; width: 400px; background: #eee; border-radius: 5px;"></div>
+              <div id="map-activity-list" style="min-width: 200px;">
+                <h4>Activities with Location</h4>
+                <ul id="activity-list-ul"></ul>
+              </div>
+            </div>
+        </section>
     </main>
 
     <footer>
       <p>&copy; 2023 Mergington High School</p>
     </footer>
 
-    <script src="app.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js"></script>
   </body>
 </html>

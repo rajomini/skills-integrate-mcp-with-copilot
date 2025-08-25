@@ -3,6 +3,50 @@ document.addEventListener("DOMContentLoaded", () => {
   const activitySelect = document.getElementById("activity");
   const signupForm = document.getElementById("signup-form");
   const messageDiv = document.getElementById("message");
+  const mapActivityList = document.getElementById("activity-list-ul");
+
+  let activityMarkers = {};
+
+    // Initialize Leaflet map
+    let map;
+    function initMap() {
+      map = L.map('map').setView([37.7749, -122.4194], 13); // Default to San Francisco
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
+        maxZoom: 18,
+      }).addTo(map);
+    }
+
+    // Add activity markers to map
+    function addActivityMarkers(activities) {
+      if (!map) return;
+    // Remove old markers
+    Object.values(activityMarkers).forEach(marker => marker.remove());
+    activityMarkers = {};
+    if (mapActivityList) mapActivityList.innerHTML = "";
+      Object.entries(activities).forEach(([name, details]) => {
+        if (details.location) {
+          const marker = L.marker([details.location.lat, details.location.lng]).addTo(map);
+          marker.bindPopup(`<b>${name}</b><br>${details.description}`);
+        activityMarkers[name] = marker;
+
+        // Add to activity list next to map
+        if (mapActivityList) {
+          const li = document.createElement("li");
+          li.textContent = name;
+          li.style.cursor = "pointer";
+          li.onclick = () => {
+            map.setView([details.location.lat, details.location.lng], 15);
+            marker.openPopup();
+            // Highlight selected
+            Array.from(mapActivityList.children).forEach(child => child.style.fontWeight = "normal");
+            li.style.fontWeight = "bold";
+          };
+          mapActivityList.appendChild(li);
+        }
+        }
+      });
+    }
 
   // Function to fetch activities from API
   async function fetchActivities() {
@@ -12,6 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Clear loading message
       activitiesList.innerHTML = "";
+      if (activitySelect) activitySelect.innerHTML = '<option value="">-- Select an activity --</option>';
 
       // Populate activities list
       Object.entries(activities).forEach(([name, details]) => {
@@ -30,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 ${details.participants
                   .map(
                     (email) =>
-                      `<li><span class="participant-email">${email}</span><button class="delete-btn" data-activity="${name}" data-email="${email}">❌</button></li>`
+                      `<li><span class="participant-email">${email}</span><button class="delete-btn" data-activity="${name}" data-email="${email}">4c</button></li>`
                   )
                   .join("")}
               </ul>
@@ -50,11 +95,16 @@ document.addEventListener("DOMContentLoaded", () => {
         activitiesList.appendChild(activityCard);
 
         // Add option to select dropdown
-        const option = document.createElement("option");
-        option.value = name;
-        option.textContent = name;
-        activitySelect.appendChild(option);
+        if (activitySelect) {
+          const option = document.createElement("option");
+          option.value = name;
+          option.textContent = name;
+          activitySelect.appendChild(option);
+        }
       });
+
+      // Add markers to map
+      addActivityMarkers(activities);
 
       // Add event listeners to delete buttons
       document.querySelectorAll(".delete-btn").forEach((button) => {
@@ -156,5 +206,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Initialize app
+  if (window.L) {
+    initMap();
+  }
   fetchActivities();
 });
